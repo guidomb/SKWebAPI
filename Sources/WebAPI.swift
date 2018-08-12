@@ -1061,8 +1061,8 @@ extension WebAPI {
         }
     }
 
-    public func userInfo(id: String, success: ((_ user: User) -> Void)?, failure: FailureClosure?) {
-        let parameters: [String: Any] = ["token": token, "user": id]
+    public func userInfo(id: String, includeLocale: Bool = false, success: ((_ user: User) -> Void)?, failure: FailureClosure?) {
+        let parameters: [String: Any] = ["token": token, "user": id, "include_locale": includeLocale]
         networkInterface.request(.usersInfo, parameters: parameters, successClosure: {(response) in
             success?(User(user: response["user"] as? [String: Any]))
         }) {(error) in
